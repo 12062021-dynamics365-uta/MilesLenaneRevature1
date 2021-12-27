@@ -1,0 +1,275 @@
+﻿using System;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Threading;
+
+
+namespace Project0
+{
+
+
+
+    public class Option
+    {
+        public string Name { get; }
+        public Action Selected { get; }
+
+        public Option(string name, Action selected)
+        {
+            Name = name;
+            Selected = selected;
+        }
+    }
+
+
+
+    public class SubOption
+    {
+        public string Name { get; }
+        public Action Selected { get; }
+
+        public SubOption(string name, Action selected, Action next)
+        {
+            Name = name;
+            Selected = selected;
+        }
+    }
+
+
+
+
+
+
+
+
+    class businesslogic
+    {
+
+
+        public static List<Option> options;
+        public static List<Option> sub_options;
+
+        bool cartbool=false;
+
+        Databaseaccess blast = new Databaseaccess();
+
+        List<consumer> customerlist = new List<consumer>();
+
+        
+        public bool login_or_create_account()
+        {
+            bool login_successful;
+          
+            Console.WriteLine("Please Login or Create a New Account.");
+            //string userinput=Console.ReadLine(); //get user input
+            //if (userinput.isin database){ return !login_successful;}
+            string password;
+            //else if(){}
+            Console.WriteLine("Welcome to Strickland Propane");
+            Console.WriteLine("First name please:");
+            string firstname = Console.ReadLine();
+            Console.WriteLine("Lastname please:");
+            string lastname = Console.ReadLine();
+           
+            
+            
+            while (firstname.Any(char.IsDigit) == true || lastname.Any(char.IsDigit) == true || firstname.Any(char.IsPunctuation) == true || lastname.Any(char.IsPunctuation) == true)
+            {
+                Console.WriteLine("Error Invalid Input, please reinput first and or last name");
+                firstname = Console.ReadLine();
+                lastname = Console.ReadLine();
+                login_successful = false;
+
+
+            }
+
+            consumer user = new consumer(firstname, lastname);
+            Console.WriteLine($"your user name is: {firstname}+ {lastname}");
+            Console.WriteLine("Please Enter a Password");
+            password = Console.ReadLine();
+            firstname = user.Fname;
+            lastname = user.Lname;
+            user.username = firstname + lastname;
+            password = user.password;
+            this.customerlist.Add(user);
+            blast.addUser(user);
+           return login_successful = true;
+
+
+        }
+
+
+
+
+
+
+
+        static void WriteMenu(List<Option> options, Option selectedOption)
+        {
+            Console.Clear();
+
+            foreach (Option option in options)
+            {
+                if (option == selectedOption)
+                {
+                    Console.Write("> ");
+                }
+                else
+                {
+                    Console.Write(" ");
+                }
+
+                Console.WriteLine(option.Name);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void Menu(bool login_successful)
+        {
+
+
+           sub_options = new List<Option>
+            {
+                new Option("135 Los Gatos Road, Arlen TX, 73104", () => blast.get_locations()),
+                new Option("234 El Dorado Ln McMainerburry TX, 75324", () => blast.get_locations()),
+                new Option("455 E Farm to Market Rd 1382, Cedar Hill, TX 75104", () => blast.get_locations()),
+                new Option("1408 Armstrong Dr, DeSoto, TX 75115", () => blast.get_locations()),
+                new Option("2008 N Main Ave, San Antonio, TX 78212", () => blast.get_locations()),
+              //  new Option("", () => blast.get_locations()),
+                new Option("Return to Main Menu", () => WriteMenu(options,options[0])),
+
+
+            };
+
+
+            // Create options that you want your menu to have
+            options = new List<Option>
+            {
+
+
+                 new Option("Locations", () => blast.get_locations()),
+              //  new Option("Locations", () => WriteTemporaryMessage("These are our locations throughout Texas!")),
+                new Option ("Products" , () => blast.get_productlist()),
+                //new Option("Products", () =>  WriteTemporaryMessage("Here's our catalogue" ))
+                 //  new Option("Products", () =>  WriteTemporaryMessage("Here's our catalogue")),
+                new Option("View Shopping Cart", () =>  WriteTemporaryMessage("Items in your shopping cart")),
+                new Option("Exit", () => Environment.Exit(0)),
+            };
+
+            // Set the default index of the selected item to be the first
+            int index = 0;
+
+            // Write the menu out
+            WriteMenu(options, options[index]);
+
+            // Store key info in here
+            ConsoleKeyInfo keyinfo;
+            do
+            {
+                keyinfo = Console.ReadKey();
+
+                // Handle each key input (down arrow will write the menu again with a different selected item)
+                if (keyinfo.Key == ConsoleKey.DownArrow)
+                {
+                    if (index + 1 < options.Count)
+                    {
+                        index++;
+                        WriteMenu(options, options[index]);
+                    }
+                }
+                if (keyinfo.Key == ConsoleKey.UpArrow)
+                {
+                    if (index - 1 >= 0)
+                    {
+                        index--;
+                        WriteMenu(options, options[index]);
+                    }
+                }
+                // Handle different action for the option
+                if (keyinfo.Key == ConsoleKey.Enter)
+                {
+                    options[index].Selected.Invoke();
+                    index = 0;
+
+                }
+            }
+            while (keyinfo.Key != ConsoleKey.X);
+
+            Console.ReadKey();
+
+        }
+
+
+
+
+
+        static void WriteTemporaryMessage(string message)
+        {
+            Console.Clear();
+            Console.WriteLine(message);
+            Thread.Sleep(3000);
+            WriteMenu(options, options.First());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //menu features locations shopping cart order history ect
+
+
+    }
+
+
+
+       
+
+
+
+
+
+    
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
