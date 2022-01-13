@@ -1,0 +1,16 @@
+C:\Users\Mobius I\source\repos\sweetnsalty\bin\Debug\net5.0\sweetnsalty.exe
+C:\Users\Mobius I\source\repos\sweetnsalty\bin\Debug\net5.0\sweetnsalty.deps.json
+C:\Users\Mobius I\source\repos\sweetnsalty\bin\Debug\net5.0\sweetnsalty.runtimeconfig.json
+C:\Users\Mobius I\source\repos\sweetnsalty\bin\Debug\net5.0\sweetnsalty.runtimeconfig.dev.json
+C:\Users\Mobius I\source\repos\sweetnsalty\bin\Debug\net5.0\sweetnsalty.dll
+C:\Users\Mobius I\source\repos\sweetnsalty\bin\Debug\net5.0\ref\sweetnsalty.dll
+C:\Users\Mobius I\source\repos\sweetnsalty\bin\Debug\net5.0\sweetnsalty.pdb
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.csproj.AssemblyReference.cache
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.AssemblyInfoInputs.cache
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.AssemblyInfo.cs
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.csproj.CoreCompileInputs.cache
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.dll
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\ref\sweetnsalty.dll
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.pdb
+C:\Users\Mobius I\source\repos\sweetnsalty\obj\Debug\net5.0\sweetnsalty.genruntimeconfig.cache
